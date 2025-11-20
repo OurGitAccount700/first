@@ -34,7 +34,7 @@ public class StepDef {
                 "  \"language\": \"French-IN\"\n" +
                 "}";
 
-        req = given()
+        req = given().log().all()
                 .header("Content-Type", "application/json")
                 .body(payload);
     }
@@ -49,7 +49,7 @@ public class StepDef {
         }
 
         response = req.when().post(endpoint)
-                .then().extract().response();
+                .then().log().all().extract().response();
     }
 
     @Then("Success reposnse should retrieved with {int} statuc code")
